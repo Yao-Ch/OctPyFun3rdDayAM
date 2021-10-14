@@ -23,34 +23,32 @@ Exercise 10:
         
 """
 
-class Stack(list):
+class Stack(list): # Now the class Stack "inherit from" list
+# Stack is a subclass (derived or child) class of list
+# list is a super (base or mother) class of Stack
+
     def __init__(self, size):
         if isinstance(size, int) and size > 0:
             self.maxSize=size
-            self.content=[]
         else:
             raise Exception("Wrong stack size given")
     def __str__(self):
-        return f"({len(self)}/{self.maxSize}) {self.content}"
-    def __len__(self):
-        return len(self.content)
+        return f"({len(self)}/{self.maxSize}) {super().__str__()}"
+
     def __eq__(self, other):
-        return self.maxSize == other.maxSize and self.content == other.content
-    def __contains__(self, value):
-        return value in self.content
-    
+        return self.maxSize == other.maxSize and super().__eq__(other)
+
     def push(self, value):
         if len(self) >= self.maxSize: #The stack is full
             raise Exception("Stack full!")
         else:
-            self.content.append(value)
+            self.append(value)
     def pop(self):
         if len(self)==0: # the stack is empty
             raise Exception("Stack empty!!")
         else:
-            return self.content.pop()
-    def clear(self):
-        self.content.clear()
+            return super().pop()
+
         
 s1=Stack(10) # a stack of 10 elements (10 is a maximum)
 
@@ -86,6 +84,7 @@ s2=Stack(10) # a stack of 10 elements (10 is a maximum)
 s2.push(45)
 s2.push(56)
 s2.push(78)
+
 print(s2)
 s2.clear()
 print(s2)
@@ -93,3 +92,5 @@ print(s2)
 print(s1==s2)
 s2.push(100)
 print(s1==s2)
+
+
