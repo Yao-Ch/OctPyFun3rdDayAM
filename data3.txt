@@ -1,0 +1,6 @@
+lugano 45
+geneva 67
+error
+geneva 67
+lausanne 67
+error
